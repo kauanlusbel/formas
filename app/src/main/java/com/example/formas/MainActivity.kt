@@ -17,8 +17,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -30,11 +33,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.focus.focusModifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -86,13 +91,14 @@ fun SplashScreen(navController: NavController) {
 
     ) {
 
-       Image(painter = painterResource(id = R.drawable.formaslaranja_1),
-           contentDescription = "LOGO ",
-           modifier = Modifier
-               .size(300.dp)
-               .offset(y = (-100).dp)
+        Image(
+            painter = painterResource(id = R.drawable.formaslaranja_1),
+            contentDescription = "LOGO ",
+            modifier = Modifier
+                .size(300.dp)
+                .offset(y = (-100).dp)
 
-       )
+        )
 
 
     }
@@ -100,7 +106,7 @@ fun SplashScreen(navController: NavController) {
 
 @Composable
 fun Inicio(navController: NavController) {
-    var email by remember { mutableStateOf("")}
+    var email by remember { mutableStateOf("") }
 
 
     Column(
@@ -116,8 +122,9 @@ fun Inicio(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        Spacer(modifier = Modifier
-            .padding(top = 50.dp)
+        Spacer(
+            modifier = Modifier
+                .padding(top = 50.dp)
         )
         Image(
             painter = painterResource(id = R.drawable.formaslaranja_1),
@@ -126,31 +133,80 @@ fun Inicio(navController: NavController) {
                 .size(150.dp)
 
         )
-Column(
-    verticalArrangement = Arrangement.Top,
+        Column(
+            verticalArrangement = Arrangement.Top,
 
-)
-
-        {
-    Spacer(modifier = Modifier
-        .padding(30.dp)
-    )
-            TextField(
-                value = email,
-                onValueChange = {newtext -> email = newtext}
             )
 
+        {
+            Spacer(
+                modifier = Modifier
+                    .padding(30.dp)
+            )
+            TextField(
+                value = email,
+                onValueChange = { newtext -> email = newtext },
+                shape = RoundedCornerShape(25.dp),
+                label = {
+                    Text(text = "E-mail:")
+                }
+
+            )
+
+            Spacer(modifier = Modifier.padding(28.dp))
+            TextField(
+                value = email,
+                onValueChange = { newtext -> email = newtext },
+                shape = RoundedCornerShape(25.dp),
+                label = {
+                    Text(text = "Senha:")
+                }
+
+
+            )
+            Row {
+
+
+            Text(
+                text = "Cadastre-se",
+                color = Color.White,
+                modifier = Modifier
+                    .clickable { }
+                    .padding(top = 10.dp)
+            )
+                Spacer(modifier = Modifier.padding(10.dp))
+                Text(text = "Esqueci minha senha",
+                color = Color.White,
+                modifier = Modifier
+                    .clickable { }
+                    .padding(top = 10.dp)
+                )
+
+
+
+
         }
+            Button(
+                onClick = { /* Ação do botão */ },
+                modifier = Modifier.padding(top = 100.dp)
+            ) {
+                Text(
+                    text = "Login",
+                    color = Color(0xFFFFEB411E),
+                    fontSize = (20.sp) // Define um tamanho maior para a fonte
+                )
+            }
 
 
+        }
+    }
 
     }
 }
 
 
-
 @Composable
-fun Login (navController: NavController) {
+fun Login(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -165,7 +221,8 @@ fun Login (navController: NavController) {
 
     ) {
 
-        Image(painter = painterResource(id = R.drawable.formaslaranja_1),
+        Image(
+            painter = painterResource(id = R.drawable.formaslaranja_1),
             contentDescription = "LOGO ",
             modifier = Modifier
                 .size(300.dp)
@@ -185,6 +242,7 @@ private fun splash() {
         SplashScreen(rememberNavController())
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewInicio() {
